@@ -11,3 +11,9 @@ arrays.forEach(function(numbers){
 
 console.log(newArray);
 // → [1, 2, 3, 4, 5, 6]
+
+
+
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
+  return a.concat(b);
+}, []);
