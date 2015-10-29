@@ -1,13 +1,29 @@
-function LongestWord(sen) {
-    var long_w = "";
-    var long_len = 0;
-    sen = sen.replace(/[^a-zA-Z0-9\s]/g, "").split(" ");
+function LetterCountI(str) {
 
-    for (var i = 0; i < sen.length; i++) {
-        if (sen[i].length > long_len) {
-            long_len = sen[i].length;
-            long_w = sen[i];
+    var words = str.split(" ");
+    var largestDif = 0;
+    var answer;
+
+    for (var i = 0; i < words.length; i++) {
+        var currentWord = words[i];
+        var currentWordLength = words[i].length;
+        var currentWordSorted = words[i].split("").sort();
+        for (var j = 0; j < (words[i].length - 1); j++) {
+            if (currentWordSorted[j] === currentWordSorted[j + 1]) {
+                currentWordSorted.splice(j, 1);
+            }
+            var currentDif = (currentWordLength - currentWordSorted.length);
+            if (currentDif > largestDif) {
+                largestDif = currentDif;
+                answer = currentWord;
+            }
         }
     }
-    return long_w;
+    
+    if (largestDif > 0) {
+        return answer;
+    } else {
+        return -1;
+    }
+
 }
